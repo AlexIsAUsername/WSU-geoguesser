@@ -1,6 +1,5 @@
 #!/bin/bash
 
+cd frontend
 npm i
-
-cd wsu-geoguesser
 npm run dev
