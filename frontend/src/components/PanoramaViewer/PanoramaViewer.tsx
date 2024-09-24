@@ -20,9 +20,9 @@ const Panorama = ({ url }: PanoProps) => {
 
 const PanoramaViewer = () => {
     return (
-        <Canvas>
+        <Canvas className='canvas'>
             <Suspense fallback={null}>
-                <Panorama url='http://localhost:4000/images/Russ_112B.png'/>
+                <Panorama url='http://localhost:4000/images/Neuro_Engineering_Rehabilitation_and_Degeneration_Lab.png'/>
                 <OrbitControls enableZoom={false} />
             </Suspense>
         </Canvas>
