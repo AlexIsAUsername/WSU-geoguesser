@@ -13,6 +13,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.0",
+    "fs": "^0.0.1-security",
     "path": "^0.12.7",
     "photo-sphere-viewer": "^4.8.1",
     "ts-node": "^10.9.2"
