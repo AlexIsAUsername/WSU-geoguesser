@@ -10,11 +10,11 @@ for dir in */; do
 		cd "$dir" || continue
 		echo $(pwd)
 		# Run the cube2sphere command with specified image files
-		cube2sphere b.jpg f.jpg r.jpg l.jpg u.jpg d.jpg -o ${OUTPUT}/${dir%?}
+		cube2sphere b.jpg f.jpg r.jpg l.jpg u.jpg d.jpg -o ${OUTPUT}/${dir%?} -f "png"
 		# Navigate back to the previous directory
 		cd ..
 		# Print the directory name
-		echo "$dir"
+		echo "$dir" # Neuro_Engineering_Rehabilitation_and_Degeneration_Lab
 		echo ""
 	fi
 done
