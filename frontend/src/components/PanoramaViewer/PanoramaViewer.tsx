@@ -20,7 +20,6 @@ const Panorama = ({ url }: PanoProps) => {
 
 const PanoramaViewer = ({ url }: PanoProps) => {
 
-    console.log("full url:" + url);
     
     return (
         <Canvas className='canvas'>
