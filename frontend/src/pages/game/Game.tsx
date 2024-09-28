@@ -1,40 +1,40 @@
 import { Viewer } from '@photo-sphere-viewer/core';
-import React , {useEffect } from 'react'
+import React , {useEffect, useState } from 'react'
 
 import { ReactPhotoSphereViewer } from 'react-photo-sphere-viewer';
 import PanoramaViewer from '../../components/PanoramaViewer/PanoramaViewer';
 
+interface Location { 
+    path: string;
+    x:    number;
+    y:    number;
+    z:    number;
+}
+
+
 const Game = () => {
-    // const baseUrl = 'http://localhost:4000/images';
-    // return (
-    //     <div className="App">
-    //         <ReactPhotoSphereViewer
-    //             src='http://localhost:4000/images/Russ_112B.png'
-    //             height={"100vh"}
-    //             width={"100%"}
-    //         ></ReactPhotoSphereViewer>
-    //     </div >
-    // );
 
+    const [loc, setLoc] = useState<Location | undefined>(undefined)
 
-    // useEffect(() => {
-    //     const shperePlayerInstance = ReactPhotoSphereViewer({
-    //         panorama: `http://localhost:4000/images/Russ_112B.png`
-    //     });
+    useEffect(() => {
+        fetch("http://localhost:4000/getimage") // pull base out to constant at some point
+            .then((res) => res.json())
+            .then((data) => {
+                setLoc(data)
+            })
 
-    //     // unmount component instructions
-    //     return () => {
-    //         shperePlayerInstance.destroy();
-    //     };
-    // }, [src]); // will only be called when the src prop gets updated
-
-
-    // return (
-    //     <div ref={sphereElementRef} />
-    // );
+    }, [])
 
     return(
-        <PanoramaViewer></PanoramaViewer>
+        loc ? (
+            <PanoramaViewer url={`http://localhost:4000${loc.path}`}></PanoramaViewer>
+        ) : (
+            <div> 
+                <h1> Loading... </h1>
+                <p> Pretend there is a skeleton screen here</p>
+
+            </div>
+        )
     )
 }
 
