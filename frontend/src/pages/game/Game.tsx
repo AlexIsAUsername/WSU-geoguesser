@@ -1,8 +1,7 @@
-import { Viewer } from '@photo-sphere-viewer/core';
 import React , {useEffect, useState } from 'react'
 
-import { ReactPhotoSphereViewer } from 'react-photo-sphere-viewer';
 import PanoramaViewer from '../../components/PanoramaViewer/PanoramaViewer';
+import VerifyTester from '../../components/VerifyTester/VerifyTester';
 
 interface Location { 
     path: string;
@@ -27,7 +26,10 @@ const Game = () => {
 
     return(
         loc ? (
-            <PanoramaViewer url={`http://localhost:4000${loc.path}`}></PanoramaViewer>
+            <>
+                <PanoramaViewer url={`http://localhost:4000${loc.path}`}></PanoramaViewer>
+                <VerifyTester/>
+            </>
         ) : (
             <div> 
                 <h1> Loading... </h1>

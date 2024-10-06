@@ -12,7 +12,7 @@ let location_cache: Location[];
 // wrap image state in a cache to prevent fs loads constantle
 const load_locations = (): Location[]  => {
     if(!location_cache){
-        return JSON.parse(fs.readFileSync('locations.json', 'utf8'));
+        return JSON.parse(fs.readFileSync('temp-locations.json', 'utf8'));
     }
     
     return location_cache;

@@ -21,10 +21,12 @@ export const verify = (req: Request, res: Response) => {
     const actual = req.body.actual;
     if (guess == undefined || actual == undefined) {
         return res.status(422).json({
-            message: "yes",
-
+            message: "no",
         })
-
     }
+
+    return res.status(200).json({
+        message: "yes"
+    });
 
 }

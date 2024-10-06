@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getImage, getState } from "./handlers";
+import { getImage, getState, verify } from "./handlers";
 import express from "express"
 import path from "path";
 
@@ -11,5 +11,5 @@ router.get("/", getState)
 router.use("/images/", express.static(imgDirPath))
 
 router.get("/getimage", getImage)
-router.post("/verify",)
+router.post("/verify", verify)
 export default router;
