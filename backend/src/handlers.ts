@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import fs from "fs";
-import load_locations, { Location } from "./locations";
+import load_locations, { eucDist, Location, Point } from "./locations";
 export const getState = (req: Request, res: Response) => {
     return res.status(200).json({
 
@@ -17,8 +17,9 @@ export const getImage = (req: Request, res: Response) => {
 }
 
 export const verify = (req: Request, res: Response) => {
-    const guess = req.body.guess;
-    const actual = req.body.actual;
+    const guess: Point = req.body.guess;
+    const actual: Point = req.body.actual;
+
     if (guess == undefined || actual == undefined) {
         return res.status(422).json({
             message: "no",
@@ -26,7 +27,8 @@ export const verify = (req: Request, res: Response) => {
     }
 
     return res.status(200).json({
-        message: "yes"
+        message: "yes",
+        dist: eucDist(guess, actual)
     });
 
 }
