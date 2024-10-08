@@ -33,3 +33,29 @@ export const verify = (req: Request, res: Response) => {
     });
 
 }
+
+export const setKey = (req: Request, res: Response) => {
+    const key: string = req.body.key;
+
+    fs.writeFile(".env", key, err => {
+        if(err){
+            return console.log("Could not write key file");
+        }
+
+        console.log("Key file writen");
+        return res.status(200);
+    })
+}
+
+
+export const getKey = (req: Request, res: Response) => {
+    fs.readFile(".env", {encoding: "utf-8"}, (err, data) =>{
+        if(err){
+            return console.log("Could not read key file");
+        }
+
+        return res.status(200).json({
+            key: data.trim()
+        });
+    })
+}
