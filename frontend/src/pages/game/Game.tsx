@@ -2,6 +2,7 @@ import React , {useEffect, useState } from 'react'
 
 import PanoramaViewer from '../../components/PanoramaViewer/PanoramaViewer';
 import VerifyTester from '../../components/VerifyTester/VerifyTester';
+import MyGoogleMap from '../../components/Map/Map';
 
 interface Location { 
     path: string;
@@ -28,7 +29,9 @@ const Game = () => {
         loc ? (
             <>
                 <PanoramaViewer url={`http://localhost:4000${loc.path}`}></PanoramaViewer>
+
                 <VerifyTester/>
+                <MyGoogleMap/>
             </>
         ) : (
             <div> 

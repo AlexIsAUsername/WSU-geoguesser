@@ -13,7 +13,7 @@ export interface Point {
 
 let location_cache: Location[];
 
-// wrap image state in a cache to prevent fs loads constantle
+// wrap image state in a cache to prevent fs loads constantly
 const load_locations = (): Location[]  => {
     if(!location_cache){
         return JSON.parse(fs.readFileSync('temp-locations.json', 'utf8'));

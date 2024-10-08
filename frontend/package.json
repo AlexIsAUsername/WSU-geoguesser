@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@photo-sphere-viewer/core": "^5.10.0",
+    "@react-google-maps/api": "^2.19.3",
     "@react-three/drei": "^9.112.1",
     "@react-three/fiber": "^8.17.7",
     "@types/three": "^0.168.0",

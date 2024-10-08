@@ -7,6 +7,7 @@ export const getState = (req: Request, res: Response) => {
         message: "stateless server"
     })
 }
+
 export const getImage = (req: Request, res: Response) => {
 
     const locations: Location[] = load_locations();
