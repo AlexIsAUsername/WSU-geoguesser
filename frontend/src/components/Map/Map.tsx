@@ -6,7 +6,6 @@ import { LoadScript } from '@react-google-maps/api';
 interface MarkerType {
     lat: number;
     lng: number;
-    time: Date;
 }
 
 const containerStyle = {
@@ -21,18 +20,16 @@ const center = {
 };
 
 const MyGoogleMap: React.FC = () => {
-    const [markers, setMarkers] = useState<MarkerType[]>([]);
+    const [marker, setMarker] = useState<MarkerType>();
 
     const onMapClick = useCallback((event: google.maps.MapMouseEvent) => {
         if (event.latLng) {
-            setMarkers((current) => [
-                ...current,
-                {
-                    lat: event.latLng!.lat(),
-                    lng: event.latLng!.lng(),
-                    time: new Date(),
-                },
-            ]);
+            setMarker({
+                lat: event.latLng.lat(),
+                lng: event.latLng.lng()
+            })
+
+
         }
     }, []);
 
@@ -44,12 +41,13 @@ const MyGoogleMap: React.FC = () => {
                 zoom={10}
                 onClick={onMapClick}
             >
-                {markers.map((marker, index) => (
-                    <Marker
-                        key={index}
-                        position={{ lat: marker.lat, lng: marker.lng }}
-                    />
-                ))}
+
+            {marker ? (
+                <Marker position={{ lat: marker.lat, lng: marker.lng }}/> 
+            ) :(
+                <>Loading...</>
+            )}
+
             </GoogleMap>
         </LoadScript>
     );
