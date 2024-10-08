@@ -3,6 +3,7 @@ import React , {useEffect, useState } from 'react'
 import PanoramaViewer from '../../components/PanoramaViewer/PanoramaViewer';
 import VerifyTester from '../../components/VerifyTester/VerifyTester';
 import MyGoogleMap from '../../components/Map/Map';
+import getKey from '../../components/utils';
 
 interface Location { 
     path: string;
@@ -14,7 +15,8 @@ interface Location {
 
 const Game = () => {
 
-    const [loc, setLoc] = useState<Location | undefined>(undefined)
+    const [loc, setLoc] = useState<Location | undefined>(undefined);
+    const [key, setKey] = useState<string>("");
 
     useEffect(() => {
         fetch("http://localhost:4000/getimage") // pull base out to constant at some point
@@ -23,15 +25,21 @@ const Game = () => {
                 setLoc(data)
             })
 
+        getKey().then((key) => {
+            console.log(`KEY=${key}`);
+            setKey(key!);
+        })
+        
+
     }, [])
 
     return(
-        loc ? (
+        (loc && key) ? (
             <>
                 <PanoramaViewer url={`http://localhost:4000${loc.path}`}></PanoramaViewer>
 
                 <VerifyTester/>
-                <MyGoogleMap/>
+                <MyGoogleMap apiKey={key}/>
             </>
         ) : (
             <div> 
