@@ -3,6 +3,7 @@ import { Marker } from '@react-google-maps/api';
 import { GoogleMap } from '@react-google-maps/api';
 import { LoadScript } from '@react-google-maps/api';
 import { Point } from '../../pages/game/Game';
+import { generateMagicSquareNoise } from 'three/examples/jsm/Addons.js';
 
 interface MarkerType {
     lat: number;
@@ -26,7 +27,7 @@ interface MapProps{
     setPos: (pos: Point) => void
 }
 
-const MyGoogleMap = ({ apiKey, setPos }: MapProps) => {
+const Map = ({ apiKey, setPos }: MapProps) => {
     const [marker, setMarker] = useState<MarkerType>();
 
     const onMapClick = useCallback((event: google.maps.MapMouseEvent) => {
@@ -71,4 +72,4 @@ const MyGoogleMap = ({ apiKey, setPos }: MapProps) => {
     );
 };
 
-export default MyGoogleMap;
+export default Map;

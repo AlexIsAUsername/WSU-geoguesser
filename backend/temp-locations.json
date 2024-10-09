@@ -1,14 +1,18 @@
 [
     {
-    "path": "/images/Computer_Lab.png",
-    "x": 39.779055,
-    "y": -84.063805,
-    "z": 0.00000
+        "path": "/images/Computer_Lab.png",
+        "point":{
+            "x": 39.779055,
+            "y": -84.063805,
+            "z": 0.00000
+        }
     },
     {
         "path": "/images/Intro_to_Circuits_and_Hardware_Lab.png",
-        "x": 39.779194,
-        "y": -84.064000,
-        "z": 0.00000
+        "point":{
+            "x": 39.779194,
+            "y": -84.064000,
+            "z": 0.00000
+        }
     }
 ]
