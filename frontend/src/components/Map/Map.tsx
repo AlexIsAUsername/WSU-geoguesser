@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Marker } from '@react-google-maps/api';
 import { GoogleMap } from '@react-google-maps/api';
 import { LoadScript } from '@react-google-maps/api';
-import { string } from 'three/webgpu';
+import { Point } from '../../pages/game/Game';
 
 interface MarkerType {
     lat: number;
@@ -23,9 +23,10 @@ const center = {
 
 interface MapProps{
     apiKey: string
+    setPos: (pos: Point) => void
 }
 
-const MyGoogleMap = ({ apiKey }: MapProps) => {
+const MyGoogleMap = ({ apiKey, setPos }: MapProps) => {
     const [marker, setMarker] = useState<MarkerType>();
 
     const onMapClick = useCallback((event: google.maps.MapMouseEvent) => {
@@ -36,6 +37,19 @@ const MyGoogleMap = ({ apiKey }: MapProps) => {
             })
         }
     }, []);
+
+
+    useEffect(() => {
+        if(marker){ // marker is undefined the on initial map load
+            const newPoint: Point = {
+                x: marker.lat,
+                y: marker.lng,
+                z: 0
+            }; // hardcode zero for now until we get drop down for floor
+            setPos(newPoint);
+        }
+
+    }, [marker]);
 
     return (
         <LoadScript googleMapsApiKey={apiKey}>
