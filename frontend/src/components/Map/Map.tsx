@@ -57,7 +57,7 @@ const Map = ({ apiKey, setPos }: MapProps) => {
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={10}
+                zoom={17}
                 onClick={onMapClick}
             >
 
