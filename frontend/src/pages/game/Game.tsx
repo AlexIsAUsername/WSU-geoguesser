@@ -79,6 +79,7 @@ const Game = () => {
             })
             .then((data) => {
                 console.log("Success: " + JSON.stringify(data));
+                alert(JSON.stringify(data)); // all alerts need to be removed at some point bc they break shit
             })
             .catch((error: Error) => {
                 console.log("Error: " + error.message);

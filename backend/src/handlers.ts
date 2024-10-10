@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import fs from "fs";
-import load_locations, { eucDist, Location, Point } from "./locations";
+import load_locations, { eucDist, geoDistance, Location, Point } from "./locations";
 export const getState = (req: Request, res: Response) => {
     return res.status(200).json({
 
@@ -29,7 +29,7 @@ export const verify = (req: Request, res: Response) => {
 
     return res.status(200).json({
         message: "yes",
-        dist: eucDist(guess, actual)
+        dist: geoDistance(guess, actual)
     });
 
 }

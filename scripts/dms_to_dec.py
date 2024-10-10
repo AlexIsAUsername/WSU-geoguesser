@@ -25,7 +25,7 @@ def dms_to_decimal(dms_str):
 
 # multiline literal is gross but simple for this
 coordinate = r"""
-    39°46'45.1"N 84°03'50.4"W
+39°46'53.6"N 84°03'50.8"W
 """
 
 
