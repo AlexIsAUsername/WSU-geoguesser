@@ -9,9 +9,11 @@ for file in "$IMAGE_DIR"/*; do
     
     echo "    {" >> $OUTPUT_FILE
     echo "        \"path\": \"$IMAGE_DIR/$filename\"," >> $OUTPUT_FILE
-    echo "        \"x\": 0.00000," >> $OUTPUT_FILE # will still have to manually label of these things, but better than doing all this manually
-    echo "        \"y\": 0.00000," >> $OUTPUT_FILE
-    echo "        \"z\": 0.00000" >> $OUTPUT_FILE
+    echo "        \"point\": {" >> $OUTPUT_FILE
+    echo "              \"x\": 0.00000," >> $OUTPUT_FILE # will still have to manually label of these things, but better than doing all this manually
+    echo "              \"y\": 0.00000," >> $OUTPUT_FILE
+    echo "              \"z\": 0.00000" >> $OUTPUT_FILE
+    echo "        }" >> $OUTPUT_FILE
     echo "    }," >> $OUTPUT_FILE
 done
 
