@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css'; // Import MapLibre CSS
 
@@ -12,6 +12,14 @@ interface MapProps {
     apiKey: string;
     setPos: (pos: Point) => void;
 }
+enum STYLE {
+    OUTDOOR = "outdoor",
+    STREETS_DARK = "streets-dark",
+    STREETS = "streets", 
+    WINTER = "winter",
+    SATELLITE = "satellite"
+}
+
 
 const Map = ({ apiKey, setPos }: MapProps) => {
     const mapContainer = useRef<HTMLDivElement>(null);
@@ -19,14 +27,17 @@ const Map = ({ apiKey, setPos }: MapProps) => {
     const map = useRef<maplibregl.Map | null>(null);
     const markerRef = useRef<maplibregl.Marker | null>(null);
 
+    const [style, setStyle] = useState<STYLE>(STYLE.OUTDOOR)
+
     const initialCenter: [number, number] = [-84.063429, 39.782072]; 
 
     useEffect(() => {
-        if (map.current || !mapContainer.current) return; 
+        console.log("ran use effect")
+        if (!mapContainer.current) return; 
 
         map.current = new maplibregl.Map({
-            container: mapContainer.current,
-            style: `https://api.maptiler.com/maps/streets/style.json?key=${apiKey}`,
+            container: mapContainer.current ,
+            style: `https://api.maptiler.com/maps/${style}/style.json?key=${apiKey}`,
             center: initialCenter,
             zoom: 17,
         });
@@ -51,13 +62,28 @@ const Map = ({ apiKey, setPos }: MapProps) => {
             };
             setPos(newPoint);
         });
-    }, [apiKey, setPos]);
+
+    }, [apiKey, setPos, style]);    
+
+    const handleStyleChange = ((e: React.ChangeEvent<HTMLSelectElement>) => {
+        setStyle(e.target.value as STYLE);
+        // theoretically, there should be a really simple map.setStyle func, but I wasn't able to get
+        // that to work, so we have this hacky way of just changing the url instead 
+    })
 
     return (
         <div style={{ width: '100%', height: '400px', position: 'relative' }}>
+            <select value={style} onChange={handleStyleChange}>
+                {Object.values(STYLE).map(style => {
+                    return <option key={style} value={style}>
+                        {style}
+                    </option>
+                })}
+            </select>
             <div ref={mapContainer} style={{ width: '100%', height: '100%', position: 'absolute' }} />
         </div>
     );
+
 };
 
 export default Map;
