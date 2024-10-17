@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import "./Score.css";
 
 const Score = () => {
 
@@ -35,15 +36,13 @@ const Score = () => {
 
 
     return (
-        (score) ? (
-            <div>{score}</div>
-        ) : (
-            <>
-                <h1> Loading... </h1>
-                <p> Pretend there is a skeleton screen here</p>
-            </>
-        )
-
+        <div className="container">
+            <div className="score-display">Score: {score}</div>
+            <div className="button-group">
+                <button className="styled-button" onClick={() => nav("/game")}>Play Again</button>
+                <button className="styled-button" onClick={() => nav("/home")}>Home</button>
+            </div>
+        </div>
     )
 }
 

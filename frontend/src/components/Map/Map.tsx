@@ -77,7 +77,7 @@ const Map = ({ apiKey, setPos }: MapProps) => {
 
     return (
         <div style={{ width: '100%', height: '400px', position: 'relative' }}>
-            <select value={style} onChange={handleStyleChange}>
+            <select className='' value={style} onChange={handleStyleChange}>
                 {Object.values(STYLE).map(style => (
                     <option key={style} value={style}>
                         {style}
