@@ -69,16 +69,16 @@ const Game = () => {
             },
             body: JSON.stringify({ guess, actual }),
         })
-            .then((response) => {
-                if (response.status === 422) {
+        .then((response) => {
+            if (response.status === 422) {
 
 
-                    return response.json().then((data) => {
-                        console.log("Error: " + JSON.stringify(data));
-                    });
-                }
-                return response.json();
-            })
+                return response.json().then((data) => {
+                    console.log("Error: " + JSON.stringify(data));
+                });
+            }
+            return response.json();
+        })
         .then((data) => {
                 console.log("Success: " + JSON.stringify(data));
                 // alert(JSON.stringify(data)); // all alerts need to be removed at some point bc they break shit

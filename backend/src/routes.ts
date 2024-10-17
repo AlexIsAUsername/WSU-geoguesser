@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getImage, getKey, getState, setKey, verify } from "./handlers";
+import { getImage, getKey, getState, setKey, verify, score } from "./handlers";
 import express from "express"
 import path from "path";
 
@@ -16,4 +16,5 @@ router.post("/verify", verify);
 
 router.post("/setkey", setKey);
 router.get("/getkey", getKey);
+router.post("/score", score)
 export default router;
