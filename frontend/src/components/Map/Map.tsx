@@ -12,6 +12,7 @@ interface MapProps {
     apiKey: string;
     setPos: (pos: Point) => void;
 }
+
 enum STYLE {
     OUTDOOR = "outdoor",
     STREETS_DARK = "streets-dark",
@@ -20,23 +21,22 @@ enum STYLE {
     SATELLITE = "satellite"
 }
 
-
 const Map = ({ apiKey, setPos }: MapProps) => {
-    const mapContainer = useRef<HTMLDivElement>(null);
-    // this useRef caused me so much pain. 
-    const map = useRef<maplibregl.Map | null>(null);
+    const mapContainer = useRef<HTMLDivElement>(null); 
+    const map = useRef<maplibregl.Map | null>(null); 
     const markerRef = useRef<maplibregl.Marker | null>(null);
 
-    const [style, setStyle] = useState<STYLE>(STYLE.OUTDOOR)
+    const [style, setStyle] = useState<STYLE>(STYLE.OUTDOOR);
 
     const initialCenter: [number, number] = [-84.063429, 39.782072]; 
 
     useEffect(() => {
-        console.log("ran use effect")
-        if (!mapContainer.current) return; 
+        if (map.current) return; 
+
+        console.log("Initializing map");
 
         map.current = new maplibregl.Map({
-            container: mapContainer.current ,
+            container: mapContainer.current!,// shouldnt be null atm
             style: `https://api.maptiler.com/maps/${style}/style.json?key=${apiKey}`,
             center: initialCenter,
             zoom: 17,
@@ -63,27 +63,30 @@ const Map = ({ apiKey, setPos }: MapProps) => {
             setPos(newPoint);
         });
 
-    }, [apiKey, setPos, style]);    
+    }, [apiKey, setPos]);
 
-    const handleStyleChange = ((e: React.ChangeEvent<HTMLSelectElement>) => {
+    useEffect(() => {
+        if (map.current) {
+            map.current.setStyle(`https://api.maptiler.com/maps/${style}/style.json?key=${apiKey}`);
+        }
+    }, [style]); // ehhhh prolly dont need the key
+
+    const handleStyleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setStyle(e.target.value as STYLE);
-        // theoretically, there should be a really simple map.setStyle func, but I wasn't able to get
-        // that to work, so we have this hacky way of just changing the url instead 
-    })
+    };
 
     return (
         <div style={{ width: '100%', height: '400px', position: 'relative' }}>
             <select value={style} onChange={handleStyleChange}>
-                {Object.values(STYLE).map(style => {
-                    return <option key={style} value={style}>
+                {Object.values(STYLE).map(style => (
+                    <option key={style} value={style}>
                         {style}
                     </option>
-                })}
+                ))}
             </select>
             <div ref={mapContainer} style={{ width: '100%', height: '100%', position: 'absolute' }} />
         </div>
     );
-
 };
 
 export default Map;

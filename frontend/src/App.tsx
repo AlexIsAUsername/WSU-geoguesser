@@ -7,6 +7,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './pages/home/Home'
 import Game from './pages/game/Game'
+import Score from './pages/score/Score'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Home />}> </Route>
                     <Route path='/game' element={<Game />}> </Route>
+                    <Route path='/score' element={<Score />}> </Route>
                 </Routes>
             </BrowserRouter>
         </>
