@@ -23,6 +23,10 @@ const Game = () => {
     const [marker, setPos] = useState<Point>();
     const nav = useNavigate();
 
+    // idk if this will work
+    const theMap = <Map apiKey={key} setPos={setPos} />
+
+
     useEffect(() => {
         fetch('http://localhost:4000/getimage')
             .then((res) => res.json())
@@ -64,7 +68,7 @@ const Game = () => {
                 return response.json();
             })
             .then((data) => {
-                nav('/score', { state: data.dist });
+                nav('/score', { state: [data.dist, guess, actual, `https://api.maptiler.com/maps/streets/style.json?key=${key}`] });
             })
             .catch((error: Error) => {
                 console.log('Error: ' + error.message);
@@ -78,7 +82,7 @@ const Game = () => {
                     <PanoramaViewer url={`http://localhost:4000${realLoc.path}`} />
                 </div>
                 <div className="map-container">
-                    <Map apiKey={key} setPos={setPos} />
+                    {theMap}
                 </div>
             </div>
             <div className="button-group">
