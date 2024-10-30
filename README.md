@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WSU Geo-Guesser
+
+<p align="center">
+  <a href="https://github.com/AlexIsAUsername/WSU-geoguesser">
+    <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color/254000/66-512.png" alt="Marker logo" width="400" height="370">
+  </a>
+</p>
+
+<h3 align="center"><strong>WSU Geoguesser</strong></h3>
+
+<p align="center">
+  A Geoguesser for Wright State University
+  <br>
+</p>
+
+
+WSU geoguesser is a [geoguesser](https://www.geoguessr.com/) like game that takes place exclusively at Wright State University
+
+## Demo
+[![YouTube](https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png)](https://youtu.be/0WogktK6i_I)
+
 
 ## Getting Started
 
-First, run the development server:
+To play, you'll need an api key from MapLibre
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+0. Clone this repository
+    ```bash
+    git clone https://github.com/AlexIsAUsername/WSU-geoguesser.git
+    chmod u+x run.sh
+    ```
+1. **Sign Up for Cloud**: Go to [maptiler.com](https://www.maptiler.com) and create an account.
+2. **Access API Keys**: After logging in, go to **Cloud** > **API Keys**.
+3. **Create Key**: Click **Create API Key**, name it, and set permissions.
+4. **Copy Key**: Copy the generated key.
+5. **Use It**: Insert the key into the start screen
+5. Run the start script
+    ```bash
+    ./run.sh
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You only need to put the API key in one time, after that, you can just click submit with an empty box
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
