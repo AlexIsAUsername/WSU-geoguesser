@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# force user to install ts-node-dev globally
+sudo npm i -g ts-node-dev --save-dev
+
 if which tmux >/dev/null; then
 	echo "You are running in tmux"
 	tmux new-session -d -s geo
